@@ -44,7 +44,7 @@ create table Recuperado(
     cantidad int not null
 );
 
-create table SE(
+create table SE(   /*SE (Semana Epidemiológica)*/
 	idSe int primary key,
     numeralSE int not null
 );
@@ -127,4 +127,10 @@ INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES
 INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES ('04', 'Teresa', aes_encrypt('648798TR'), 'Enfermera', 'teresa@gmail.com');
 INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES ('05', 'Jose Luis', aes_encrypt('159849JL'), 'Medico', 'joseluis@gmail.com'); 
 INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES ('06', 'Marco', aes_encrypt('357987MC'),'Medico', 'marco@gmail.com');
+
+/*El conjunto de datos covid19_municipios, 
+la cual es base para la elaboración del mapa de REPORTE SEMANAL DE CASOS COVID-19
+ publicado en la página https://snis.minsalud.gob.bo/ . La fuente de la información
+ es el Sistema Nacional de Información en Salud y Vigilancia Epidemiológica - SNISVE.
+ Datos Actualizados a la Semana epidemiológica 48*/
 
