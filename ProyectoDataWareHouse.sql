@@ -1,61 +1,61 @@
 create table Departamento(
-idDepartemento int primary key auto_increment,
+idDepartemento int primary key,
 codigoDepartamento int not null,
-nombreDepartamento varchar(500) not null
+nombreDepartamento varchar(100) not null
 ); 
 
 create table Paciente(
- idPaciente int primary key auto_increment,
- NombrePaciente varchar(500) not null,
- apellidoPaciente varchar(500) not null,
- apellidoMaterno varchar(500) not null
+ idPaciente int primary key,
+ NombrePaciente varchar(100) not null,
+ apellidoPaciente varchar(100) not null,
+ apellidoMaterno varchar(100) not null
 );
 
 create table Confirmados(
-	idConfirmado int primary key auto_increment,
+	idConfirmado int primary key,
     numeroConfirmado int not null
 );
 
 create table Codigo(
-	idCodigo int primary key auto_increment,
+	idCodigo int primary key,
     numeral int not null
 );
 
 create table Municipio(
-	idMunicipio int primary key auto_increment,
-    nombreMunicipio varchar(500) not null,
+	idMunicipio int primary key,
+    nombreMunicipio varchar(100) not null,
     poblacionTotal int not null
 );
 
 create table Fallecido(
-	idFallecido int primary key auto_increment,
+	idFallecido int primary key,
     cantidad int not null
 );
 
 create table Tiempo(
-	idTiempo int primary key auto_increment,
+	idTiempo int primary key,
     Año int not null,
     Mes int not null,
     Dia int not null
 );
 
 create table Recuperado(
-	idRecuperados int primary key auto_increment,
+	idRecuperados int primary key,
     cantidad int not null
 );
 
 create table SE(
-	idSe int primary key auto_increment,
+	idSe int primary key,
     numeralSE int not null
 );
 
 create table Activos(
-	idActivos int primary key auto_increment,
-    Nactivos int not null
+	idActivos int primary key,
+    Nactivos bit not null
 );
 
 create table ReporteCovid(
-	idReporteCovid int primary key auto_increment,
+	idReporteCovid int primary key,
 	idDepartamento int not null,
     idPaciente int not null,
     idConfirmados int not null,
@@ -80,30 +80,51 @@ create table ReporteCovid(
 );
 
 create table Usuario(
-	idUsuario int primary key auto_increment,
+	idUsuario int primary key,
     nombreUsuario varchar(500) not null,
-    contraseña decimal not null,
+    contraseña varchar(100) not null,
     roles varchar(500) not null,
     correo varchar(500) not null,
-    foreign key Usuario(idUsuario) references Persona(idPersona)
+    foreign key (idUsuario) references Persona(idPersona)
 );
 
 create table Persona(
-	idPersona int primary key auto_increment,
+	idPersona int primary key,
     nombrePersona varchar(500) not null,
     apellidoPaterno varchar(500) not null,
     apellidoMaterno varchar(500) not null,
-    celulaIdentidad int not null
+    celulaIdentidad int not null,
+    foreign key Persona(idPersona) references Paciente(idPaciente)
 );
 
-INSERT INTO Departamento(codigoDepartamento, nombreDepartamento) VALUES ('1', 'CHUQUISACA');
-INSERT INTO Departamento(codigoDepartamento, nombreDepartamento) VALUES ('2', 'LA PAZ');
-INSERT INTO Departamento(codigoDepartamento, nombreDepartamento) VALUES ('3', 'COCHABAMBA');
-INSERT INTO Departamento(codigoDepartamento, nombreDepartamento) VALUES ('4', 'ORURO');
-INSERT INTO Departamento(codigoDepartamento, nombreDepartamento) VALUES ('5', 'POTOSI');
-INSERT INTO Departamento(codigoDepartamento, nombreDepartamento) VALUES ('6', 'TARIJA');
-INSERT INTO Departamento(codigoDepartamento, nombreDepartamento) VALUES ('7', 'SANTA CRUZ');
-INSERT INTO Departamento(codigoDepartamento, nombreDepartamento) VALUES ('8', 'BENI');
-INSERT INTO Departamento(codigoDepartamento, nombreDepartamento) VALUES ('9', 'PANDO');
+INSERT INTO departamento(idDepartemento, codigoDepartamento, nombreDepartamento) VALUES ('01', '01', 'CHUQUISACA');
+INSERT INTO departamento(idDepartemento, codigoDepartamento, nombreDepartamento) VALUES ('02', '2', 'LA PAZ');
+INSERT INTO departamento(idDepartemento, codigoDepartamento, nombreDepartamento) VALUES ('03', '3', 'COCHABAMBA');
+INSERT INTO departamento(idDepartemento, codigoDepartamento, nombreDepartamento) VALUES ('04', '4', 'ORURO');
+INSERT INTO departamento(idDepartemento, codigoDepartamento, nombreDepartamento) VALUES ('05', '5', 'POTOSI');
+INSERT INTO departamento(idDepartemento, codigoDepartamento, nombreDepartamento) VALUES ('06', '6', 'TARIJA');
+INSERT INTO departamento(idDepartemento, codigoDepartamento, nombreDepartamento) VALUES ('07', '7', 'SANTA CRUZ');
+INSERT INTO departamento(idDepartemento, codigoDepartamento, nombreDepartamento) VALUES ('08', '8', 'BENI'); 
+INSERT INTO departamento(idDepartemento, codigoDepartamento, nombreDepartamento) VALUES ('09', '9', 'PANDO');
 
-INSERT INTO Paciente(NombrePaciente, apellidoPaciente, apellidoMaterno) VALUES ();
+SELECT * FROM departamento;
+SELECT * FROM paciente;
+SELECT * FROM confirmados;
+SELECT * FROM codigo;
+SELECT * FROM municipio;
+SELECT * FROM fallecido;
+SELECT * FROM tiempo;
+SELECT * FROM recuperado;
+SELECT * FROM se;
+SELECT * FROM activos;
+
+SELECT * FROM usuario;
+SELECT * FROM persona;
+
+INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES ('01', 'Julio', aes_encrypt('123456JL'), 'Adminnistrador', 'julio@gmail.com');
+INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES ('02', 'Maria', aes_encrypt('891954MR'), 'Medico', 'maria@gmail.com');
+INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES ('03', 'Pedro', aes_encrypt('984774PD'), 'Enfermero', 'pedro@gmail.com');
+INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES ('04', 'Teresa', aes_encrypt('648798TR'), 'Enfermera', 'teresa@gmail.com');
+INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES ('05', 'Jose Luis', aes_encrypt('159849JL'), 'Medico', 'joseluis@gmail.com'); 
+INSERT INTO usuario(idUsuario, nombreUsuario, contraseña, roles, correo) VALUES ('06', 'Marco', aes_encrypt('357987MC'),'Medico', 'marco@gmail.com');
+
